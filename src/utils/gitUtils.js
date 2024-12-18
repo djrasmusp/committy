@@ -1,6 +1,7 @@
 import simpleGit from 'simple-git';
 import chalk from "chalk";
 import {logError, logInfo, logSuccess} from "./logger.js";
+import {COMMIT_TYPES} from "./constants.js";
 
 const options = {
     baseDir: process.cwd(),
@@ -23,6 +24,7 @@ export async function getDefaults(){
     const branch = await getBranchName();
 
     const match = branch.match(/^([a-zA-Z]+)\/(\d+)?-?(.+)?/);
+
     if(!match) {
         return {
             scope: '',
@@ -30,12 +32,16 @@ export async function getDefaults(){
         }
     }
 
-    const [scope, id] = match;
+    const [ branchname, scope, id, title] = match;
 
-    if (COMMIT_TYPES.includes(type)) {
+    console.log(scope, id)
+
+    if (COMMIT_TYPES.includes(scope)) {
         return {
+            branchname,
             scope,
-            id: id || ''
+            id: id || '',
+            title: title || ''
         }
     }
 

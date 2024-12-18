@@ -50,13 +50,13 @@ export async function createCommit() {
         if(answers.message){
             message = message + `
             
-            ${answers.message}
+${answers.message}
            `
         }
 
         message = message + `
         
-        Environment: ${answers.environment}`
+Environment: ${answers.environment}`
 
         await commitMessage(message)
 
