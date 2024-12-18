@@ -1,0 +1,18 @@
+{
+  "name": "git0r",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Rasmus P",
+  "license": "ISC",
+  "description": "Helper for better commit",
+  "dependencies": {
+    "@inquirer/prompts": "^7.2.0",
+    "chalk": "^5.4.0",
+    "commander": "^12.1.0",
+    "simple-git": "^3.27.0"
+  }
+}
