@@ -17,7 +17,7 @@ export async function createCommit() {
                 }
             }),
             initial: scope,
-            cancel: "default"
+            cancel: "symbol"
         })
 
         console.log(scopeType)
