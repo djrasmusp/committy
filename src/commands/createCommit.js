@@ -8,28 +8,27 @@ export async function createCommit() {
 
         appendFiles()
 
-        const scopeType = await consola.prompt("Select commit scope", {
-            type: "select",
-            options: COMMIT_TYPES.sort().map(item => {
-                return {
-                    label: item,
-                    value: item
-                }
-            }),
-            initial: scope,
-            cancel: "symbol"
-        })
-
-        console.log(scopeType)
-
         const answers = {
-
+            scope : await consola.prompt("Select commit scope", {
+                type: "select",
+                options: COMMIT_TYPES.sort().map(item => {
+                    return {
+                        label: item,
+                        value: item
+                    }
+                }),
+                initial: scope,
+                cancel: "reject"
+            }),
             id: await consola.prompt("Task id", {
                 initial: id,
+                cancel: "reject",
             }),
             title: await consola.prompt("Commit title", {
+                cancel: "reject"
             }),
             message: await consola.prompt("Commit message", {
+                cancel: "reject"
             }),
             environment: await consola.prompt("Select enviroment", {
                 type: "select",
@@ -39,7 +38,8 @@ export async function createCommit() {
                         value: item
                     }
                 }),
-                initial: scope
+                initial: 'test',
+                cancel: "reject"
             }),
         }
 
@@ -59,7 +59,7 @@ Environment: ${answers.environment}`
         await commitMessage(message)
 
     } catch (error) {
-        if (error instanceof Error && error.name === 'ExitPromptError') {
+        if (error instanceof Error && error.name === 'ConsolaPromptCancelledError') {
             console.log('👋 until next time!');
             return
         }
