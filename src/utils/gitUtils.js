@@ -59,7 +59,7 @@ export async function appendFiles(){
 export async function commitMessage(message){
     try{
         await git.commit(message);
-        logSuccess()
+        consola.success(message);
     }catch (error){
         consola.error(error);
     }

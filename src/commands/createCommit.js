@@ -8,17 +8,21 @@ export async function createCommit() {
 
         appendFiles()
 
-        const answers = {
-            scope: await consola.prompt("Select commit scope", {
-                type: "select",
-                options: COMMIT_TYPES.sort().map(item => {
-                    return {
-                        label: item,
-                        value: item
-                    }
-                }),
-                initial: scope
+        const scopeType = await consola.prompt("Select commit scope", {
+            type: "select",
+            options: COMMIT_TYPES.sort().map(item => {
+                return {
+                    label: item,
+                    value: item
+                }
             }),
+            initial: scope
+        })
+
+        console.log(scopeType)
+
+        const answers = {
+
             id: await consola.prompt("Task id", {
                 initial: id,
             }),
