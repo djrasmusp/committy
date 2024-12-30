@@ -42,10 +42,6 @@ export async function createCommit() {
                         value: item
                     }
                 })
-            }),
-            push: await confirm({
-                message: 'Want it pushed',
-                default: false
             })
         }
 
@@ -60,13 +56,9 @@ ${answers.message}
 
         message = message + `
         
-Environment: ${answers.environment}`
+Environment: **${answers.environment}**`
 
-        const commit = await commitMessage(message)
-
-        if(answers.push){
-            await pushCommit(commit)
-        }
+        await commitMessage(message)
 
     } catch (error) {
         if (error instanceof Error && error.name === 'ExitPromptError') {
