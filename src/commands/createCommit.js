@@ -64,7 +64,7 @@ Environment: ${answers.environment}`
 
         const commit = await commitMessage(message)
 
-        if(answer.push){
+        if(answers.push){
             await pushCommit(commit)
         }
 
