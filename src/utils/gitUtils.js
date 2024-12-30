@@ -73,7 +73,7 @@ export async function commitMessage(message) {
 export async function pushCommit(commit){
     try{
         await git.push()
-        logInfo(`Pushed (${commit.commit}) to origin`)
+        logInfo(`Pushed (${commit.commit}) to Origin`)
     }catch (error){
         logError(error);
     }
