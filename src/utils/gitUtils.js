@@ -34,8 +34,6 @@ export async function getDefaults(){
 
     const [ branchname, scope, id, title] = match;
 
-    console.log(scope, id)
-
     if (COMMIT_TYPES.includes(scope)) {
         return {
             branchname,
@@ -59,11 +57,31 @@ export async function appendFiles(){
     }
 }
 
-export async function commitMessage(message){
+export async function commitMessage(message) {
     try{
-        await git.commit(message);
+        const commit  = await git.commit(message);
         logSuccess()
+
+        return commit
     }catch (error){
+        logError(error);
+    }
+}
+
+export async function pushCommit(commit){
+    try{
+        await git.push()
+        logInfo(chalk.bold('  PUSHED : ') + chalk(`${commit.commit} to Origin`))
+    }catch (error){
+        logError(error);
+    }
+}
+
+export async function appendToCommit(){
+    try{
+        await git.commit('Append files', '.', ['--amend', '--no-edit'])
+        logSuccess('Append files to latest commit')
+    }catch(error){
         logError(error);
     }
 }
