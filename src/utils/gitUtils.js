@@ -76,3 +76,12 @@ export async function pushCommit(commit){
         logError(error);
     }
 }
+
+export async function appendToCommit(){
+    try{
+        await git.commit('Append files', '.', ['--amend', '--no-edit'])
+        logSuccess('Append files to latest commit')
+    }catch(error){
+        logError(error);
+    }
+}

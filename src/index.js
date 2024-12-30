@@ -1,18 +1,19 @@
 #!/usr/bin/env node
-
-
-import {createCommit} from "./commands/createCommit.js";
-
 import {program} from "commander";
+import {createCommit} from "./commands/createCommit.js";
+import {appendToCommit} from "./utils/gitUtils.js";
 
 program
-    .version("1.0.0")
-    .description("My Node CLI")
     .command("commit", {
         isDefault: true
     })
     .action(async () => {
         await createCommit()
+    })
+
+program.command("append")
+    .action(async () => {
+        await appendToCommit()
     })
 
 program.parse(process.argv);
