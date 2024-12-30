@@ -8,7 +8,7 @@
     "start": "node src/index.js"
   },
   "bin": {
-    "git0r" : "src/index.js"
+    "git0r": "src/index.js"
   },
   "keywords": [],
   "author": "Rasmus P",
