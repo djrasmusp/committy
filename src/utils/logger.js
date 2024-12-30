@@ -5,7 +5,7 @@ export function logSuccess(message = '') {
 }
 
 export function logInfo(message= ''){
-    console.log(chalk.blueBright(message));
+    console.log(chalk.rgb(0, 128, 255)(message));
 }
 
 export function logWarning(message= '') {
