@@ -1,6 +1,6 @@
 import {select, input, number, editor} from '@inquirer/prompts';
 import {COMMIT_TYPES, ENVIROMENTS} from '../utils/constants.js'
-import {getDefaults, commitMessage, appendFiles, pushCommit} from "../utils/gitUtils.js";
+import {getDefaults, commitMessage, appendFiles} from "../utils/gitUtils.js";
 import {logError} from "../utils/logger.js";
 
 export async function createCommit() {
