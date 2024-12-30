@@ -56,7 +56,7 @@ ${answers.message}
 
         message = message + `
         
-Environment: **${answers.environment}**`
+ENV: ${answers.environment}`
 
         await commitMessage(message)
 
