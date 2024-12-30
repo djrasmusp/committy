@@ -1,4 +1,4 @@
-import {select, input, number} from '@inquirer/prompts';
+import {select, input, number, confirm} from '@inquirer/prompts';
 import {COMMIT_TYPES, ENVIROMENTS} from '../utils/constants.js'
 import {getDefaults, commitMessage, appendFiles} from "../utils/gitUtils.js";
 import {logError} from "../utils/logger.js";
@@ -42,6 +42,10 @@ export async function createCommit() {
                         value: item
                     }
                 })
+            }),
+            push: await confirm({
+                message: 'Want it pushed',
+                default: false
             })
         }
 
