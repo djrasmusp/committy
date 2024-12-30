@@ -1,6 +1,6 @@
 import {select, input, number, confirm} from '@inquirer/prompts';
 import {COMMIT_TYPES, ENVIROMENTS} from '../utils/constants.js'
-import {getDefaults, commitMessage, appendFiles} from "../utils/gitUtils.js";
+import {getDefaults, commitMessage, appendFiles, pushCommit} from "../utils/gitUtils.js";
 import {logError} from "../utils/logger.js";
 
 export async function createCommit() {
@@ -62,7 +62,11 @@ ${answers.message}
         
 Environment: ${answers.environment}`
 
-        await commitMessage(message)
+        const commit = await commitMessage(message)
+
+        if(answer.push){
+            await pushCommit(commit)
+        }
 
     } catch (error) {
         if (error instanceof Error && error.name === 'ExitPromptError') {

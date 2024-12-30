@@ -59,21 +59,21 @@ export async function appendFiles(){
     }
 }
 
-export async function commitMessage(message){
+export async function commitMessage(message) {
     try{
-        const res = await git.commit(message);
-
-        console.log(res)
+        const commit  = await git.commit(message);
         logSuccess()
+
+        return commit
     }catch (error){
         logError(error);
     }
 }
 
-export async function pushCommit(){
+export async function pushCommit(commit){
     try{
         await git.push()
-        logInfo('Push to origin')
+        logInfo(`Pushed (${commit.commit}) to origin`)
     }catch (error){
         logError(error);
     }
