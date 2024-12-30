@@ -89,9 +89,7 @@ export async function newBranch(name){
     try{
         const branch = await git.checkoutLocalBranch(name);
 
-        console.log(branch)
-
-        logSuccess(`created new branch: ${branch.branch}`);
+        logSuccess(`created new branch: ` + chalk.bold(name) );
     }catch(error){
         logError(error);
     }
