@@ -68,15 +68,6 @@ export async function commitMessage(message) {
     }
 }
 
-export async function pushCommit(commit){
-    try{
-        await git.push()
-        logInfo(chalk.bold('  PUSHED : ') + chalk(`${commit.commit} to Origin`))
-    }catch (error){
-        logError(error);
-    }
-}
-
 export async function appendToCommit(){
     try{
         await git.add('.')
@@ -84,6 +75,23 @@ export async function appendToCommit(){
 
 
         logSuccess('Append files to latest commit')
+    }catch(error){
+        if (error instanceof Error && error.name === 'ExitPromptError') {
+            console.log('👋 until next time!');
+            return
+        }
+
+        logError(error);
+    }
+}
+
+export async function newBranch(name){
+    try{
+        const branch = await git.checkoutLocalBranch(name);
+
+        console.log(branch)
+
+        logSuccess(`created new branch: ${branch.branch}`);
     }catch(error){
         logError(error);
     }
