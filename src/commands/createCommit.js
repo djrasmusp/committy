@@ -31,16 +31,22 @@ export async function createCommit() {
             ),
             message: await editor({
                 message: 'Commit message',
+                waitForUseInput: false
             }),
             environment: await select({
                 message: 'Environment',
-                default: 'test',
-                choices: ENVIROMENTS.sort().map(item => {
+                default: undefined,
+                choices: [
+                    {
+                        name: 'none',
+                        value: undefined
+                    },
+                    ...ENVIROMENTS.sort().map(item => {
                     return {
                         name: item,
                         value: item
                     }
-                })
+                })],
             })
         }
 
@@ -52,10 +58,11 @@ export async function createCommit() {
 ${answers.message}
            `
         }
-
-        message = message + `
+        if(answers.environment) {
+            message = message + `
         
 ENV: ${answers.environment}`
+        }
 
         await commitMessage(message)
 
