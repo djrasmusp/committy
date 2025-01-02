@@ -41,7 +41,7 @@ export async function createCommit() {
                         name: 'none',
                         value: undefined
                     },
-                    ...ENVIROMENTS.sort().map(item => {
+                    ...ENVIROMENTS.map(item => {
                     return {
                         name: item,
                         value: item
