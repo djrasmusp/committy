@@ -22,7 +22,6 @@ export async function createCommit() {
             }),
             id: await input({
                 message: 'Task id',
-                required: true,
                 default: id,
             }),
             title: await input({

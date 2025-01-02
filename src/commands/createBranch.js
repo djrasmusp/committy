@@ -20,7 +20,7 @@ export async function createBranch() {
                 message: 'Task id',
             }),
             title: await input({
-                    message: 'Commit title',
+                    message: 'Branch title',
                     required: true,
                 }
             )
