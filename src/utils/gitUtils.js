@@ -107,9 +107,7 @@ async function getDefaultBranch() {
 
             const match = headLine.match(/refs\/heads\/(\S+)/);
             if (match) {
-                const defaultBranch = match[1];
-                consola.info('Default branch : ' + defaultBranch);
-                return defaultBranch;
+                return match[1]; // the name of the Default branch
             }
         }
         consola.error('No default branches found.');
@@ -124,7 +122,7 @@ export async function goHome() {
     try {
         const defaultBranch = await getDefaultBranch();
 
-        consola.info('Checkout to : ' + defaultBranch);
+        consola.start('Checking out...');
 
         await git.checkout(defaultBranch);
         consola.start('Fetching updates...');
