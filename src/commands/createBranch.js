@@ -1,8 +1,8 @@
-import {select, input} from '@inquirer/prompts';
+import {input, select} from '@inquirer/prompts';
 import {COMMIT_TYPES} from '../utils/constants.js'
-import {logError} from "../utils/logger.js";
 import {newBranch} from "../utils/gitUtils.js";
 import {kebabCase} from "../utils/utils.js";
+import {consola} from "consola";
 
 export async function createBranch() {
     try {
@@ -36,6 +36,6 @@ export async function createBranch() {
             return
         }
 
-        logError(error)
+        consola.error(error);
     }
 }
