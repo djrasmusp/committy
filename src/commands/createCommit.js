@@ -1,7 +1,7 @@
-import {select, input, editor} from '@inquirer/prompts';
+import {editor, input, select} from '@inquirer/prompts';
 import {COMMIT_TYPES, ENVIROMENTS} from '../utils/constants.js'
-import {getDefaults, commitMessage, appendFiles} from "../utils/gitUtils.js";
-import {logError} from "../utils/logger.js";
+import {appendFiles, commitMessage, getDefaults} from "../utils/gitUtils.js";
+import {consola} from "consola";
 
 export async function createCommit() {
     try {
@@ -42,23 +42,23 @@ export async function createCommit() {
                         value: undefined
                     },
                     ...ENVIROMENTS.map(item => {
-                    return {
-                        name: item,
-                        value: item
-                    }
-                })],
+                        return {
+                            name: item,
+                            value: item
+                        }
+                    })],
             })
         }
 
-        let message  = `${answers.scope}(${answers.id}): ${answers.title}`
+        let message = `${answers.scope}(${answers.id}): ${answers.title}`
 
-        if(answers.message){
+        if (answers.message) {
             message = message + `
             
 ${answers.message}
            `
         }
-        if(answers.environment) {
+        if (answers.environment) {
             message = message + `
         
 ENV: ${answers.environment}`
@@ -72,6 +72,6 @@ ENV: ${answers.environment}`
             return
         }
 
-        logError(error)
+        consola.error(error);
     }
 }
