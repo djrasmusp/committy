@@ -1,14 +1,13 @@
 {
-  "name": "git0r",
+  "name": "Committy",
   "version": "1.0.0",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js"
   },
   "bin": {
-    "git0r": "src/index.js"
+    "committy": "src/index.js"
   },
   "keywords": [],
   "author": "Rasmus P",
@@ -16,7 +15,6 @@
   "description": "Helper for better commit",
   "dependencies": {
     "@inquirer/prompts": "^7.2.1",
-    "chalk": "^5.4.1",
     "commander": "^13.0.0",
     "consola": "^3.3.3",
     "simple-git": "^3.27.0"
