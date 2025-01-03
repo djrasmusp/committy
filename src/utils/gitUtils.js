@@ -108,7 +108,7 @@ async function getDefaultBranch() {
             const match = headLine.match(/refs\/heads\/(\S+)/);
             if (match) {
                 const defaultBranch = match[1];
-                consola.info('  Default branch : ' + defaultBranch);
+                consola.info('Default branch : ' + defaultBranch);
                 return defaultBranch;
             }
         }
