@@ -134,3 +134,22 @@ export async function goHome() {
         consola.error(error);
     }
 }
+
+export async function listOfFiles() {
+    try {
+        const files = await git.raw(['status', '--short']);
+
+        return files.split('\n').filter(line => line.trim() !== '').map(line => {
+            const [status, ...filePath] = line.trim().split(' ')
+            const file = filePath.join(' ')
+
+            return {
+                name: `(${status}) ${file}`,
+                value: file
+            }
+        });
+
+    } catch (error) {
+        consola.error(error);
+    }
+}
