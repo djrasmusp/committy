@@ -1,5 +1,5 @@
 {
-  "name": "Committy",
+  "name": "committy",
   "version": "1.0.0",
   "main": "src/index.js",
   "type": "module",
@@ -17,6 +17,7 @@
     "@inquirer/prompts": "^7.2.4",
     "commander": "^13.1.0",
     "consola": "^3.4.0",
+    "inquirer-select-pro": "^1.0.0-alpha.9",
     "simple-git": "^3.27.0"
   }
 }

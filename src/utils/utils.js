@@ -3,3 +3,17 @@ export function kebabCase(str, keepLeadingDash = true) {
         .join('-')
         .toLowerCase();
 }
+
+export function errorHandling(error) {
+    if (error instanceof Error && error.name === 'ExitPromptError') {
+        console.log('👋 until next time!');
+        return
+    }
+
+    if (error?.constructor?.name === 'ExitPromptError') {
+        console.log('👋 until next time!');
+        return
+    }
+
+    console.error(error);
+}
