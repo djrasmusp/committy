@@ -1,27 +1,27 @@
-import {consola} from "consola";
-import {listOfFiles} from "../utils/gitUtils.js";
-import {select} from 'inquirer-select-pro';
+import {gitRestoreFiles, listOfFiles} from "../utils/gitUtils.js";
+import {select as multiselect} from 'inquirer-select-pro';
+import {errorHandling} from "../utils/utils.js";
 
 
-export async function restoreFiles() {
+export async function restoreFiles(allFilesSelected) {
     try {
-        const files = await listOfFiles()
 
-        const answers = {
-            selectedFiles: await select({
+        let selectedFiles = ['.']
+
+        if (!allFilesSelected) {
+            const files = await listOfFiles()
+
+            selectedFiles = await multiselect({
                 multiple: true,
                 message: 'Select files',
-                options: files
+                options: files,
+                validate: (options) => options.length > 0
             })
         }
+        
 
-        console.log(answers.selectedFiles);
+        await gitRestoreFiles(selectedFiles)
     } catch (error) {
-        if (error instanceof Error && error.name === 'ExitPromptError') {
-            console.log('👋 until next time!');
-            return
-        }
-
-        consola.error(error);
+        errorHandling(error)
     }
 }

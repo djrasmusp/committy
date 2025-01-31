@@ -1,8 +1,7 @@
 import {input, select} from '@inquirer/prompts';
 import {COMMIT_TYPES} from '../utils/constants.js'
 import {newBranch} from "../utils/gitUtils.js";
-import {kebabCase} from "../utils/utils.js";
-import {consola} from "consola";
+import {errorHandling, kebabCase} from "../utils/utils.js";
 
 export async function createBranch() {
     try {
@@ -31,11 +30,6 @@ export async function createBranch() {
 
         await newBranch(name)
     } catch (error) {
-        if (error instanceof Error && error.name === 'ExitPromptError') {
-            console.log('👋 until next time!');
-            return
-        }
-
-        consola.error(error);
+        errorHandling(error)
     }
 }
