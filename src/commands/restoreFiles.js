@@ -18,7 +18,7 @@ export async function restoreFiles(allFilesSelected) {
                 validate: (options) => options.length > 0
             })
         }
-        
+
 
         await gitRestoreFiles(selectedFiles)
     } catch (error) {
